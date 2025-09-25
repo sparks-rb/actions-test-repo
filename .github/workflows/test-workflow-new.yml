@@ -49,7 +49,9 @@ jobs:
           ls -la tests || true
           echo "=== .github/workflows ==="
           ls -la .github/workflows || true
-
+          
+      - name: Set PYTHONPATH to repo root (safe fallback)
+        run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
