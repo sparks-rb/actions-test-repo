@@ -1,0 +1,22 @@
+name: Scheduled run test.py
+
+on:
+  schedule:
+    # Daily at 01:00 UTC (06:30 AM IST)
+    - cron: '0 1 * * 1'
+  workflow_dispatch:   # optional: manual run button in Actions UI
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run test.py
+        run: python test.py
